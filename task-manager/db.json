@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Mohamed Said",
+      "lastName": "Ben Ali",
+      "email": "said@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "2",
+      "firstName": "Iheb",
+      "lastName": "Jabri",
+      "email": "iheb@gmail.com",
+      "password": "123456"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Préparer le projet Angular",
+      "description": "Créer composants et services",
+      "completed": true,
+      "createdAt": "2025-05-01T10:00:00Z",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "title": "Angular",
+      "description": "Créer composants et services",
+      "completed": false,
+      "createdAt": "2025-05-01T10:00:00Z",
+      "userId": "2"
+    },
+    {
+      "id": "3",
+      "title": "Tâche de Said",
+      "description": "Une tâche spécifique à Said",
+      "completed": false,
+      "createdAt": "2025-05-01T10:00:00Z",
+      "userId": "1"
+    },
+    {
+      "id": "4",
+      "title": "Tâche de Iheb",
+      "description": "Une tâche spécifique à Iheb",
+      "completed": true,
+      "createdAt": "2025-05-01T10:00:00Z",
+      "userId": "2"
+    },
+    {
+      "id": "0243",
+      "title": "react",
+      "description": "dsdsdqsd",
+      "completed": false,
+      "userId": "1",
+      "createdAt": "2025-05-03T12:22:57.560Z"
+    },
+    {
+      "id": "244",
+      "title": "reaact",
+      "description": "dsqdqsdsq",
+      "completed": false,
+      "userId": "1",
+      "createdAt": "2025-05-03T13:29:19.873Z"
+    },
+    {
+      "id": "245",
+      "title": "qsdsqdqs",
+      "description": "dsqdsqd",
+      "completed": false,
+      "userId": "1",
+      "createdAt": "2025-05-03T13:47:40.388Z"
+    }
+  ]
+}

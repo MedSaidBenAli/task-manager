@@ -1,0 +1,20 @@
+<!-- ✅ Navbar visible uniquement si connecté -->
+<nav class="navbar" *ngIf="authService.isAuthenticated()">
+  <div class="navbar-brand-container">
+    <a routerLink="/home" class="navbar-brand">Task Manager</a>
+    <span class="navbar-subtitle">By Said & Iheb</span>
+  </div>
+  <div class="nav-links">
+    <a routerLink="/home" class="nav-link" routerLinkActive="active">Accueil</a>
+    <a routerLink="/tasks" class="nav-link" routerLinkActive="active">Tâches</a>
+    <a routerLink="/tasks/add" class="nav-link" routerLinkActive="active">Nouvelle tâche</a>
+    <button class="logout-button" (click)="authService.logout()">Se déconnecter</button>
+  </div>
+</nav>
+
+<hr *ngIf="authService.isAuthenticated()" />
+
+<!-- 📦 Contenu de la route -->
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

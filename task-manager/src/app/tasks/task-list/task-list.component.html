@@ -1,0 +1,42 @@
+<div class="task-list-container">
+  <h2>Liste des tâches</h2>
+
+  <!-- 🔍 Recherche avec bouton -->
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchInput" placeholder="Rechercher une tâche par titre..." />
+    <button (click)="onSearch()" [disabled]="!searchInput.trim()">Rechercher</button>
+  </div>
+
+  <!-- 🎯 Filtres -->
+  <div class="filter-container">
+    <button (click)="filter = 'all'" [ngClass]="{ active: filter === 'all' }">Toutes</button>
+    <button (click)="filter = 'completed'" [ngClass]="{ active: filter === 'completed' }">Terminées</button>
+    <button (click)="filter = 'incomplete'" [ngClass]="{ active: filter === 'incomplete' }">En cours</button>
+  </div>
+
+  <!-- 📭 Aucune tâche trouvée -->
+  <div *ngIf="(filteredTasks() | taskFilter:searchTitle).length === 0" class="no-tasks">
+    <p>Aucune tâche trouvée.</p>
+  </div>
+
+  <!-- 📋 Liste des tâches -->
+  <ul class="task-list">
+    <li *ngFor="let task of filteredTasks() | taskFilter:searchTitle"
+        [ngClass]="{ 'completed-task': task.completed, 'incomplete-task': !task.completed }"
+        class="task-item">
+      
+      <div class="task-content">
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+      </div>
+
+      <div class="task-actions">
+        <button (click)="toggleTaskStatus(task)" class="status-button">
+          {{ task.completed ? 'Marquer en cours' : 'Marquer terminée' }}
+        </button>
+        <button [routerLink]="['/tasks/edit', task.id]" class="edit-button">Modifier</button>
+        <button (click)="task.id && deleteTask(task.id)" class="delete-button">Supprimer</button>
+      </div>
+    </li>
+  </ul>
+</div>

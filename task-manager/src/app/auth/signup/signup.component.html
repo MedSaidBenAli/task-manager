@@ -1,0 +1,55 @@
+<div class="signup-container">
+  <h2>Créer un compte</h2>
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName">Prénom</label>
+      <input type="text" id="firstName" formControlName="firstName" placeholder="Entrez votre prénom" />
+      <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched" class="error-message">
+        Champ requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Nom</label>
+      <input type="text" id="lastName" formControlName="lastName" placeholder="Entrez votre nom" />
+      <div *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched" class="error-message">
+        Champ requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" placeholder="Entrez votre email" />
+      <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="error-message">
+        Email invalide.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" formControlName="password" placeholder="Entrez votre mot de passe" />
+      <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="error-message">
+        Minimum 6 caractères.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="signupForm.invalid" class="submit-button">
+      S'inscrire
+    </button>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+  </form>
+
+  <div class="links">
+    <p>
+      Déjà un compte ?
+      <a routerLink="/login">Se connecter</a>
+    </p>
+  </div>
+</div>

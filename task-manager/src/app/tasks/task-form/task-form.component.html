@@ -1,0 +1,30 @@
+<div class="task-form-container">
+  <h2>{{ isEdit ? 'Modifier la tâche' : 'Nouvelle tâche' }}</h2>
+
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+    <div class="form-group">
+      <label for="title">Titre</label>
+      <input type="text" id="title" formControlName="title" placeholder="Entrez le titre de la tâche" />
+      <div *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched" class="error-message">
+        Le titre est requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" placeholder="Décrivez la tâche en détail"></textarea>
+      <div *ngIf="taskForm.get('description')?.invalid && taskForm.get('description')?.touched" class="error-message">
+        La description est requise.
+      </div>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="completed" formControlName="completed" />
+      <label for="completed">Terminée</label>
+    </div>
+
+    <button type="submit" [disabled]="taskForm.invalid" class="submit-button">
+      {{ isEdit ? 'Mettre à jour' : 'Ajouter' }}
+    </button>
+  </form>
+</div>
