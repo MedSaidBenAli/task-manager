@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 // Modèle de tâche (tu peux aussi créer un fichier `task.model.ts`)
 export interface Task {
-  id?: string | number;
+  id?: string;
   title: string;
   description: string;
   completed: boolean;
@@ -47,24 +47,13 @@ export class TaskService {
   }
 
   // Récupérer le prochain ID disponible
-  private getNextTaskId(): Observable<string | number> {
+  private getNextTaskId(): Observable<string> {
     return this.http.get<Task[]>(this.apiUrl).pipe(
       map(tasks => {
-        // Trouver le plus grand ID numérique
-        const numericIds = tasks.map(task => {
-          if (!task.id) return 0;
-          const id = typeof task.id === 'string' ? parseInt(task.id, 10) : task.id;
-          return isNaN(id) ? 0 : id;
-        });
-        const maxNumericId = Math.max(...numericIds, 0);
-        
-        // Si tous les IDs sont numériques, retourner le prochain nombre
-        if (tasks.every(task => !task.id || typeof task.id === 'number' || !isNaN(parseInt(task.id, 10)))) {
-          return maxNumericId + 1;
-        }
-        
-        // Sinon, générer un ID alphanumérique
-        return Math.random().toString(36).substring(2, 6);
+        // Générer un ID alphanumérique unique
+        const timestamp = Date.now().toString(36);
+        const random = Math.random().toString(36).substring(2, 6);
+        return `task_${timestamp}_${random}`;
       })
     );
   }
